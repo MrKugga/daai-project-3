@@ -1,1 +1,1 @@
-# daai-project-3
+# DAAI - Project 3 - Federated Semantic Segmentation for self-driving cars
