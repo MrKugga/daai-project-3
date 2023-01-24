@@ -41,12 +41,10 @@ class Server:
             
             client_set = self.select_clients(t, self.clients, clients_per_round)    
             
-            model_updates = []
             for client in client_set:
-                update = self.update_client(client, t)
-                model_updates.append(update)
+                self.update_client(client, t)
             
-            self.update_model(model_updates)            
+            self.update_model()            
             
             checkpoint = {
                     "round": t,
@@ -64,7 +62,7 @@ class Server:
     def add_update(self, num_samples, update):
         self.updates.append((num_samples, update))
     
-    def update_model(self, model_updates):
+    def update_model(self):
 
         averaged_state_dict = self._aggregation()
         self.model.load_state_dict(averaged_state_dict, strict=False)
